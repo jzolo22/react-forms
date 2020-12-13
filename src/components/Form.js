@@ -6,23 +6,35 @@ class Form extends React.Component {
     lastName: "Henry"
   }
 
-  handleFirstNameChange = event => {
-    this.setState({
-      firstName: event.target.value
-    })
+  // handleFirstNameChange = event => {
+  //   this.setState({
+  //     firstName: event.target.value
+  //   })
+  // }
+
+  // handleLastNameChange = event => {
+  //   this.setState({
+  //     lastName: event.target.value
+  //   })
+  // }
+
+  handleNameChange = event => {
+    console.log(event.target.value)
+    this.setState({[event.target.name]: event.target.value})
   }
 
-  handleLastNameChange = event => {
-    this.setState({
-      lastName: event.target.value
-    })
+  handleSubmit = event => {
+    event.preventDefault()
+    let formData = {firstName: this.state.firstName, lastName: this.state.lastName}
+    console.log(formData)
   }
 
   render() {
     return (
-      <form>
-        <input type="text" name="firstName" onChange={event => this.handleFirstNameChange(event)} value={this.state.firstName} />
-        <input type="text" name="lastName" onChange={event => this.handleLastNameChange(event)} value={this.state.lastName} />
+      <form onSubmit={this.handleSubmit}>
+        <input type="text" name="firstName" onChange={this.handleNameChange} value={this.state.firstName} />
+        <input type="text" name="lastName" onChange={this.handleNameChange} value={this.state.lastName} />
+        <input type="submit" />
       </form>
     )
   }
